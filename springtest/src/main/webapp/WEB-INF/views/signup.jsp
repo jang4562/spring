@@ -8,7 +8,7 @@
 <script src="//code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/signup" method="post">
+	<form action="<%=request.getContextPath()%>/signup" method="post" if="form">
 		<input type="text" name="id" id="id">
 		<button id="dup" type="button">중복체크</button><br>
 		<input type="password" name="pw"><br>
@@ -17,10 +17,10 @@
 		<label for="male">남성</label>
 		<input type="radio" name="gender" value="female" id="female">
 		<label for="female">여성</label><br>
-		<button type="submit">회원가입</button>
+		<button type="button" id="btnOk">회원가입</button>
 	</form>
 <script type="text/javascript">
-var dup;
+var dup = 0;
 $('#dup').click( function() {
 	var id = "";
     id = $('#id').val();
@@ -33,13 +33,27 @@ $('#dup').click( function() {
         contentType:"application/json; charset=UTF-8",
         success: function(data) {
             if(data.dup){
+            	dup = 1;
             	alert('이미 사용중인 아이디입니다.');
             }else{
+            	dup = -1;
             	alert("사용 가능한 아이디입니다.");
             }
         }
     });
 })
+$("#btnOk").click(function(){
+	if(dup == 0) {
+		alert("아이디 중복 체크를 하세요")
+		return false;
+	}
+	if(dup == 1) {
+		alert("중복된 아이디입니다. 다른 아이디를 입력하세요.")
+		return false;
+	}
+	return true;
+})
+
 </script>
 </body>
 </html>
