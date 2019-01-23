@@ -33,4 +33,11 @@ public class AccountServiceImp implements AccountService {
 		return true;
 	}
 
+	@Override
+	public boolean isDuplicated(String id) {
+		if(accountDao.getAccount(id) != null)
+			return true;
+		return false;
+	}
+
 }
