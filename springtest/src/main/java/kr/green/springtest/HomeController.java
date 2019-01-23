@@ -19,7 +19,7 @@ public class HomeController {
 	AccountService accountService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String homeGet() {
+	public String homeGet(Model model) {
 		return "home";
 	}
 	@RequestMapping(value = "/", method = RequestMethod.POST)
@@ -27,6 +27,18 @@ public class HomeController {
 		AccountVo user = accountService.signin(loginInfo);
 		model.addAttribute("user",user);
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public String signupGet(Model model) {
+		return "signup";
+	}
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public String signupPost(Model model,AccountVo userInfo) {
+		boolean isUser = accountService.signup(userInfo);
+		if(isUser)
+			return "redirect:/";
+		return "redirect:/signup";
 	}
 	
 }
