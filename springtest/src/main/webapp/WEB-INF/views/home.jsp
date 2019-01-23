@@ -11,14 +11,11 @@
 </h1>
 
 <P>  The time on the server is  </P>
-<form action="<%=request.getContextPath()%>/" method="post">
+<form method="post" action="<%=request.getContextPath() %>/" style="<c:if test="${user != null}">display:none;</c:if>"> 
 	<input type="text" name="id"><br>
 	<input type="password" name="pw"><br>
 	<button type="submit">확인</button>
 </form>
 <a href="<%= request.getContextPath()%>/signup">회원가입</a>
-<script type="text/javascript">
-	
-</script>
 </body>
 </html>
