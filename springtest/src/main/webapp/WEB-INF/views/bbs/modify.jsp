@@ -28,7 +28,7 @@
 <textarea class="form-control" id="content" name="content">${board.content}</textarea>
 </div>
 <a href="<%=request.getContextPath()%>/bbs/list">
-	<button class="btn btn-outline-primary">목록</button>
+	<button type="button" class="btn btn-outline-primary">목록</button>
 </a>
 	<button type="submit" class="btn btn-outline-primary">수정하기</button>
 </form>
