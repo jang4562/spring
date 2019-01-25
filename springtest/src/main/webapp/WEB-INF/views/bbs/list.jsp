@@ -15,6 +15,17 @@
 	<c:if test="${user == null}">
 		<a href="<%=request.getContextPath()%>/">로그인</a>
 	</c:if>
+	<%--
+	c에선 if else if 가 안되기떄문에 이러한 방식을사용
+	<c:choose>
+		<c:when test="${user != null}">
+			<a href="<%=request.getContextPath()%>/signout">로그아웃</a>
+		</c:when>
+		<c:atherwise>
+			<a href="<%=request.getContextPath()%>/">로그인</a>
+		</c:atherwise>
+	</c:choose>
+	 --%>
  	<table class="table table-bordered">
  		<tr>
  			<td>번호</td>
