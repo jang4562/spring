@@ -5,9 +5,16 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/resources/css/bootstrap.css">
+	<style type="text/css">
+	.form-signin {
+	  width: 100%;
+	  max-width: 330px;
+	  padding: 15px;
+	  margin: 200px auto;
+	</style>
 </head>
 <body>
-<div class="col-md-4">
+<div class="col-md-4 form-signin">
 	<div class="login-panel panel panel-default">
 		<div class="panel-heading">
             <h3 class="panel-title">로그인</h3>
@@ -28,5 +35,6 @@
 		<a href="<%= request.getContextPath()%>/signup">회원가입</a>
 	</div>
 </div>
+
 </body>
 </html>
