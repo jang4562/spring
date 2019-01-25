@@ -3,6 +3,9 @@ package kr.green.springtest;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,4 +57,10 @@ public class HomeController {
 		 return map;
 	}
 	
+	@RequestMapping(value = "/signout", method = RequestMethod.GET)
+	public String signoutGet(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.removeAttribute("user");
+		return "redirect:/bbs/list";
+	}
 }
