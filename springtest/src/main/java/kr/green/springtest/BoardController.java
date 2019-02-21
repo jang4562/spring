@@ -1,6 +1,6 @@
 package kr.green.springtest;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.green.springtest.pagenation.Criteria;
+import kr.green.springtest.pagenation.PageMaker;
 import kr.green.springtest.service.AccountService;
 import kr.green.springtest.service.BoardService;
 import kr.green.springtest.vo.AccountVo;
@@ -26,10 +28,16 @@ public class BoardController {
 	AccountService accountService;
 	
 	@RequestMapping(value="/bbs/list")
-	public String list(Model model) {
-		List<BoardVo> list = boardService.getBoards();
-		model.addAttribute("list",list);
-		return "bbs/list";
+	public String list(Model model,HttpServletRequest request, Criteria cri) {
+    
+    PageMaker pageMaker = boardService.getPageMaker(cri,5); //블록의 갯수 5개로 처리
+    ArrayList list = (ArrayList)boardService.getUsers(cri);
+    model.addAttribute("cri", cri);
+    model.addAttribute("list", list);
+    model.addAttribute("pageMaker", pageMaker);
+    
+    
+    return "bbs/list";
 	}
 	
 	@RequestMapping(value="/bbs/register", method=RequestMethod.GET)
